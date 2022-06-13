@@ -12,9 +12,10 @@ amqp.connect('amqp://localhost', (connError, connection) => {
             throw channelError;
         }
 
-        // Passo 3: assertiva na fila
+// Passo 3: assertiva na fila
         const QUEUE = 'FilaTesteParaQA'
         channel.assertQueue(QUEUE);
+        
         
 // Passo 4: enviar mensagem para a fila
         channel.sendToQueue(QUEUE, Buffer.from('Testes AMQP QA'));

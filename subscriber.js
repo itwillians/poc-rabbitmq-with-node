@@ -5,16 +5,17 @@ amqp.connect('amqp://localhost', (connError, connection) => {
     if (connError) {
         throw connError;
     }
-    // Passo 2: criar canal
+    
+// Passo 2: criar canal
     connection.createChannel((channelError, channel) => {
         if (channelError) {
             throw channelError;
         }
-        // Step 3: Assert Queue
-        const QUEUE = 'FilaQueRecebe'
+// Passo 3: assertiva na fila
+        const QUEUE = 'FilaTesteParaQA'
         channel.assertQueue(QUEUE);
-        // Step 4: Receive Messages
-        
+
+// Passo 4: recebimento das mensagens
         channel.consume(QUEUE, (msg) => {
             console.log(`Message received: ${msg.content.toString()}`)
         }, {
